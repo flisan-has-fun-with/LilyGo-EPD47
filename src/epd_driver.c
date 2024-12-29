@@ -675,6 +675,8 @@ void IRAM_ATTR epd_draw_grayscale_image(Rect_t area, uint8_t *data)
 void IRAM_ATTR epd_draw_frame_1bit(Rect_t area, uint8_t *ptr,
                                    DrawMode_t mode, int32_t time)
 {
+    #define min(X,Y) (((X) < (Y)) ? (X) : (Y))
+
     epd_start_frame();
     uint8_t line[EPD_WIDTH / 8];
     memset(line, 0, sizeof(line));
@@ -937,6 +939,8 @@ static void IRAM_ATTR nibble_shift_buffer_right(uint8_t *buf, uint32_t len)
 
 static void IRAM_ATTR provide_out(OutputParams *params)
 {
+    #define min(X,Y) (((X) < (Y)) ? (X) : (Y))
+
     uint8_t line[EPD_WIDTH / 2];
     memset(line, 255, EPD_WIDTH / 2);
     Rect_t area = params->area;
